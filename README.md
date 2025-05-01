@@ -2,6 +2,9 @@
 
 ## Progress
 
+### 2025-04-30
+- Add Camera control in menu
+
 ### 2025-02-10
 - Added a json file for the pyramid
 
