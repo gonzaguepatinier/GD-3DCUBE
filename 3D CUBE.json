@@ -203,6 +203,46 @@
           "name": "Y_Camera",
           "type": "number",
           "value": 0
+        },
+        {
+          "name": "ObjectA_X",
+          "type": "number",
+          "value": 0
+        },
+        {
+          "name": "ObjectA_Y",
+          "type": "number",
+          "value": 0
+        },
+        {
+          "name": "CameraA_X",
+          "type": "number",
+          "value": 0
+        },
+        {
+          "name": "CameraA_Y",
+          "type": "number",
+          "value": 0
+        },
+        {
+          "name": "Delta_X",
+          "type": "number",
+          "value": 0
+        },
+        {
+          "name": "Delta_Y",
+          "type": "number",
+          "value": 0
+        },
+        {
+          "name": "AngleInDegrees",
+          "type": "number",
+          "value": 0
+        },
+        {
+          "name": "AngleInRadians",
+          "type": "number",
+          "value": 0
         }
       ],
       "instances": [
@@ -2017,6 +2057,116 @@
             "textG": 0,
             "textR": 0
           },
+          "comment": "Change Orientation for camera\n"
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "ObjectA_X",
+                "=",
+                "_3DBOX.X()"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "ObjectA_Y",
+                "=",
+                "_3DBOX.Y()"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "CameraA_X",
+                "=",
+                "X_Camera"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "CameraA_Y",
+                "=",
+                "Y_Camera"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "Delta_X",
+                "=",
+                "ObjectA_X-CameraA_X"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "Delta_Y",
+                "=",
+                "ObjectA_Y-CameraA_Y"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "AngleInRadians",
+                "=",
+                "atan2(Delta_Y, Delta_X)"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "AngleInDegrees",
+                "=",
+                "AngleInRadians * 180 / 3.14159"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetCameraAngle"
+              },
+              "parameters": [
+                "",
+                "=",
+                "AngleInDegrees",
+                "",
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Comment",
+          "color": {
+            "b": 109,
+            "g": 230,
+            "r": 255,
+            "textB": 0,
+            "textG": 0,
+            "textR": 0
+          },
           "comment": "Display X,Y,Z Position\n"
         },
         {
@@ -2075,11 +2225,28 @@
           "conditions": [
             {
               "type": {
-                "value": "PanelSpriteButton::PanelSpriteButton::IsClicked"
+                "value": "BuiltinCommonInstructions::Or"
               },
-              "parameters": [
-                "Button_MX_Plus",
-                ""
+              "parameters": [],
+              "subInstructions": [
+                {
+                  "type": {
+                    "value": "PanelSpriteButton::PanelSpriteButton::IsPressed"
+                  },
+                  "parameters": [
+                    "Button_MX_Plus",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "PanelSpriteButton::PanelSpriteButton::IsClicked"
+                  },
+                  "parameters": [
+                    "Button_MX_Plus",
+                    ""
+                  ]
+                }
               ]
             }
           ],
@@ -2101,11 +2268,28 @@
           "conditions": [
             {
               "type": {
-                "value": "PanelSpriteButton::PanelSpriteButton::IsClicked"
+                "value": "BuiltinCommonInstructions::Or"
               },
-              "parameters": [
-                "Button_MX_Minus",
-                ""
+              "parameters": [],
+              "subInstructions": [
+                {
+                  "type": {
+                    "value": "PanelSpriteButton::PanelSpriteButton::IsClicked"
+                  },
+                  "parameters": [
+                    "Button_MX_Minus",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "PanelSpriteButton::PanelSpriteButton::IsPressed"
+                  },
+                  "parameters": [
+                    "Button_MX_Minus",
+                    ""
+                  ]
+                }
               ]
             }
           ],
@@ -2127,11 +2311,28 @@
           "conditions": [
             {
               "type": {
-                "value": "PanelSpriteButton::PanelSpriteButton::IsClicked"
+                "value": "BuiltinCommonInstructions::Or"
               },
-              "parameters": [
-                "Button_MY_Plus",
-                ""
+              "parameters": [],
+              "subInstructions": [
+                {
+                  "type": {
+                    "value": "PanelSpriteButton::PanelSpriteButton::IsClicked"
+                  },
+                  "parameters": [
+                    "Button_MY_Plus",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "PanelSpriteButton::PanelSpriteButton::IsPressed"
+                  },
+                  "parameters": [
+                    "Button_MY_Plus",
+                    ""
+                  ]
+                }
               ]
             }
           ],
@@ -2153,11 +2354,28 @@
           "conditions": [
             {
               "type": {
-                "value": "PanelSpriteButton::PanelSpriteButton::IsClicked"
+                "value": "BuiltinCommonInstructions::Or"
               },
-              "parameters": [
-                "Button_MY_Minus",
-                ""
+              "parameters": [],
+              "subInstructions": [
+                {
+                  "type": {
+                    "value": "PanelSpriteButton::PanelSpriteButton::IsClicked"
+                  },
+                  "parameters": [
+                    "Button_MY_Minus",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "PanelSpriteButton::PanelSpriteButton::IsPressed"
+                  },
+                  "parameters": [
+                    "Button_MY_Minus",
+                    ""
+                  ]
+                }
               ]
             }
           ],
@@ -2179,11 +2397,28 @@
           "conditions": [
             {
               "type": {
-                "value": "PanelSpriteButton::PanelSpriteButton::IsClicked"
+                "value": "BuiltinCommonInstructions::Or"
               },
-              "parameters": [
-                "Button_MZ_Plus",
-                ""
+              "parameters": [],
+              "subInstructions": [
+                {
+                  "type": {
+                    "value": "PanelSpriteButton::PanelSpriteButton::IsClicked"
+                  },
+                  "parameters": [
+                    "Button_MZ_Plus",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "PanelSpriteButton::PanelSpriteButton::IsPressed"
+                  },
+                  "parameters": [
+                    "Button_MZ_Plus",
+                    ""
+                  ]
+                }
               ]
             }
           ],
@@ -2195,7 +2430,7 @@
               "parameters": [
                 "Z_Camera",
                 "=",
-                "Z_Camera+100"
+                "Z_Camera+20"
               ]
             }
           ]
@@ -2205,11 +2440,28 @@
           "conditions": [
             {
               "type": {
-                "value": "PanelSpriteButton::PanelSpriteButton::IsClicked"
+                "value": "BuiltinCommonInstructions::Or"
               },
-              "parameters": [
-                "Button_MZ_Minus",
-                ""
+              "parameters": [],
+              "subInstructions": [
+                {
+                  "type": {
+                    "value": "PanelSpriteButton::PanelSpriteButton::IsClicked"
+                  },
+                  "parameters": [
+                    "Button_MZ_Minus",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "PanelSpriteButton::PanelSpriteButton::IsPressed"
+                  },
+                  "parameters": [
+                    "Button_MZ_Minus",
+                    ""
+                  ]
+                }
               ]
             }
           ],
@@ -2221,7 +2473,7 @@
               "parameters": [
                 "Z_Camera",
                 "=",
-                "Z_Camera-100"
+                "Z_Camera-20"
               ]
             }
           ]
