@@ -19,7 +19,7 @@
     "sizeOnStartupMode": "adaptWidth",
     "templateSlug": "",
     "version": "1.0.0",
-    "name": "3D CUBE",
+    "name": "3D CUBE - v2",
     "description": "",
     "author": "",
     "windowWidth": 1280,
@@ -2729,6 +2729,7 @@
           "comment": "Build pyramid at first frame\n"
         },
         {
+          "disabled": true,
           "type": "BuiltinCommonInstructions::JsCode",
           "inlineCode": [
             "if(runtimeScene.getTimeManager().isFirstFrame()){",
@@ -2821,7 +2822,17 @@
         {
           "type": "BuiltinCommonInstructions::Standard",
           "conditions": [],
-          "actions": []
+          "actions": [
+            {
+              "type": {
+                "value": "LoadPyramid::BuildPyramid"
+              },
+              "parameters": [
+                "",
+                ""
+              ]
+            }
+          ]
         }
       ],
       "layers": [
@@ -10442,7 +10453,7 @@
                 "",
                 "const scene = runtimeScene;",
                 "const cubeSize = 50; // Size of each 3D Box",
-                "const baseSize = 5; // Pyramid base size (5x5)",
+                "const baseSize = 7; // Pyramid base size (5x5)",
                 "",
                 "// Starting position (adjust as needed)",
                 "const startX = 300; // Adjust to center",
@@ -10519,7 +10530,7 @@
                 "console.log(\"3D Pyramid Generation Complete.\");",
                 "}"
               ],
-              "parameterObjects": "",
+              "parameterObjects": "Cube",
               "useStrict": true,
               "eventsSheetExpanded": false
             }
@@ -10542,7 +10553,7 @@
           "fullName": "",
           "is3D": true,
           "isUsingLegacyInstancesRenderer": false,
-          "name": "MyObject",
+          "name": "Cube",
           "objects": [],
           "objectsFolderStructure": {
             "folderName": "__ROOT"
